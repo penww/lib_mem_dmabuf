@@ -12,18 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
     - uses: actions/checkout@v4
-
     - name: Install clang-format
     - run: sudo apt install -y clang-format
-
     - name: Setup clang-format config
     - run: |
         if [ ! -f ./.clang-format ]; then
           echo "No .clang-format found, will use default .clang-format"
           curl -o .clang-format https://raw.githubusercontent.com/quic-qrb-ros/qrb_ros_transport/main/.clang-format
         fi
-
     - name: Check code style
     - run: |
         SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\)\$" | cut -f 2)
