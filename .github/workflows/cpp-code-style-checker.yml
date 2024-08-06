@@ -1,4 +1,4 @@
-name: Clang-format Code Style Checker 
+name: Cpp Code Style Checker 
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  code-style-check:
+  cpp-code-style-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,12 +28,12 @@ jobs:
       run: |
         SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\)\$" | cut -f 2)
 
-        echo -e "Check source files: \n$SRC"
+        echo -e "Check source files: \n$SRC\n"
         clang-format -style=file -i $SRC
 
         if ! git diff --exit-code; then
-          echo -e "\nCode format does not match required style !!!"
-          echo "Please check your code."
+          echo -e "\nCode does not match required style !!!"
+          echo "Please use clang-format to format your code."
           exit 1
         else
           echo "All files are properly formatted."
