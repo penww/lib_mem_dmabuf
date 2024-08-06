@@ -25,7 +25,7 @@ DmaBuffer::~DmaBuffer()
     destroy_callback_(std::shared_ptr<DmaBuffer>(this));
   }
   if (auto_release_) {
-    if (!release()) {
+               if (!release()) {
       std::cerr << "dma buffer release failed, fd: " << fd_ << ", size: " << size_ << std::endl;
     }
   }
