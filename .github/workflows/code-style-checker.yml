@@ -25,7 +25,7 @@ jobs:
         fi
 
     - name: Check code style
-      run: |
+    - run: |
         SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\)\$" | cut -f 2)
 
         echo -e "Check source files: $SRC"
